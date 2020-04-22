@@ -1,0 +1,38 @@
+version: "3.7"
+services:
+
+  nginx:
+    image: nginx:1.17.9-alpine
+    container_name: nginx
+    restart: always
+    hostname: 'www.yang.com'
+    ports:
+      - "80:80"
+    volumes:
+      - './main/config:/etc/nginx/conf.d'
+      - './main/data:/nginx'
+    networks:
+      - default
+
+  cgit:
+    build: 
+      context: ./cgit
+      dockerfile: Dockerfile-cgit
+    container_name: cgit
+    ports:
+      - "8080:8080"
+    volumes:
+      - './cgit/config/nginx:/etc/nginx/sites-enabled'
+      - '../tmp/log/ngixn:/var/log/nginx'
+      - './cgit/var/www:/var/www'
+      - './cgit/config/cgit:/etc/cgitrc.d'
+      - '../tmp/cache/cgit:/var/cache/cgit'
+      - '/srv/git:/srv/git'
+    depends_on:
+      - nginx
+    networks:
+      - default
+
+networks:
+  default:
+
