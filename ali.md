@@ -212,4 +212,4 @@
 
 ## 酒店解决方案
 
-![酒店解决方案](./aligenie_hotel_solution.png)
+![酒店解决方案](https://github.com/d12y12/temp/blob/master/img/aligenie_hotel_solution.png?raw=true)
